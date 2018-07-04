@@ -6,16 +6,16 @@ import io.javabrains.TeamFactoryKt
 import io.javabrains.PersonKt
 
 fun main(args: Array<String>) {
-	val team = TeamFactoryKt.getTeam()
+	var team = TeamFactoryKt.getTeam()
 	//1
-	val orderedTeam = team.sortedBy { it.lastName }
+	team.sortBy { it.lastName }
 	//2
-	printAll(orderedTeam, { true })
+	printAll(team, { true })
 	//3
-	printAll(orderedTeam, { p -> p.lastName.startsWith("S") })
+	printAll(team, { it.lastName.startsWith("S") })
 
 }
 
-fun <T> printAll(team: List<T>, f: (T) -> Boolean) {
-	team.filter(f).forEach { println(it) }
+fun <T> printAll(team: List<T>, condition: (T) -> Boolean) {
+	team.filter(condition).forEach { println(it) }
 }
