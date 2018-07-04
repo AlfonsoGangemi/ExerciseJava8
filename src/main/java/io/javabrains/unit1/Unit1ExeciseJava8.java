@@ -3,22 +3,22 @@ package io.javabrains.unit1;
 import java.util.Collections;
 import java.util.List;
 
-import io.javabrains.Person;
-import io.javabrains.TeamFactory;
+import io.javabrains.PersonKt;
 
 public class Unit1ExeciseJava8 {
 
     public static void main(String[] args) {
-	List<Person> team = TeamFactory.getTeam();
-
+	List<PersonKt> team = io.javabrains.TeamFactoryKt.INSTANCE.getTeam();
+	// 1
 	Collections.sort(team, (p1, p2) -> p1.getLastName().compareTo(p2.getLastName()));
-
+	// 2
 	printWithFilter(team, p -> true);
+	// 3
 	printWithFilter(team, item -> item.getLastName().startsWith("S"));
     }
 
-    private static void printWithFilter(List<Person> team, Filter<Person> filter) {
-	for (Person person : team) {
+    private static void printWithFilter(List<PersonKt> team, Filter<PersonKt> filter) {
+	for (PersonKt person : team) {
 	    if (filter.pass(person)) {
 		System.out.println(person);
 	    }
