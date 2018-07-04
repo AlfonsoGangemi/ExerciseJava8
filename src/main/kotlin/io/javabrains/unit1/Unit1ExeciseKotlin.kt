@@ -10,7 +10,12 @@ fun main(args: Array<String>) {
 	//1
 	val orderedTeam = team.sortedBy { it.lastName }
 	//2
-	orderedTeam.forEach { println(it) }
+	printAll(orderedTeam, { true })
 	//3
-	orderedTeam.filter { it.lastName.startsWith("S") }.forEach { println(it) }
+	printAll(orderedTeam, { p -> p.lastName.startsWith("S") })
+
+}
+
+fun <T> printAll(team: List<T>, f: (T) -> Boolean) {
+	team.filter(f).forEach { println(it) }
 }
