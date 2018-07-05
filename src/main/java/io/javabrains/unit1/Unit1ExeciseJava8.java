@@ -2,6 +2,7 @@ package io.javabrains.unit1;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import io.javabrains.PersonKt;
 
@@ -17,9 +18,9 @@ public class Unit1ExeciseJava8 {
 	printWithFilter(team, item -> item.getLastName().startsWith("S"));
     }
 
-    private static void printWithFilter(List<PersonKt> team, Filter<PersonKt> filter) {
+    private static void printWithFilter(List<PersonKt> team, Predicate<PersonKt> filter) {
 	for (PersonKt person : team) {
-	    if (filter.pass(person)) {
+	    if (filter.test(person)) {
 		System.out.println(person);
 	    }
 	}

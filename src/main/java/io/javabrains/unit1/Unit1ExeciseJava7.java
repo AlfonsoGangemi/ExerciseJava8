@@ -43,3 +43,7 @@ public class Unit1ExeciseJava7 {
     }
 
 }
+
+interface Filter<T> {
+    boolean pass(T item);
+}
