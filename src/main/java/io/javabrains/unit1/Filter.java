@@ -1,5 +1,6 @@
 package io.javabrains.unit1;
 
+@FunctionalInterface
 interface Filter<T> {
-    public boolean pass(T item);
+    boolean pass(T item);
 }
