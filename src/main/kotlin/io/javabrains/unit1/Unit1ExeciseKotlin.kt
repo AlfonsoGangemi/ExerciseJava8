@@ -10,12 +10,12 @@ fun main(args: Array<String>) {
 	//1
 	team.sortBy { it.lastName }
 	//2
-	printAll(team, { true })
+	printCondition(team, { true })
 	//3
-	printAll(team, { it.lastName.startsWith("S") })
+	performCondition(team, { it.lastName.startsWith("S") }, { println("${it.lastName} ${it.firstName}") })
 
 }
 
-fun <T> printAll(team: List<T>, condition: (T) -> Boolean) {
-	team.filter(condition).forEach { println(it) }
-}
+fun <T> printCondition(team: List<T>, condition: (T) -> Boolean) = performCondition(team, condition, { println(it) })
+
+fun <T> performCondition(team: List<T>, condition: (T) -> Boolean, action: (T) -> Unit) = team.filter(condition).forEach(action)

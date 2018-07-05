@@ -2,6 +2,7 @@ package io.javabrains.unit1;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import io.javabrains.PersonKt;
@@ -15,15 +16,20 @@ public class Unit1ExeciseJava8 {
 	// 2
 	printWithFilter(team, p -> true);
 	// 3
-	printWithFilter(team, item -> item.getLastName().startsWith("S"));
+	performWithFilter(team, item -> item.getLastName().startsWith("S"), System.out::println);
+    }
+
+    private static void performWithFilter(List<PersonKt> team, Predicate<PersonKt> filter,
+	    Consumer<PersonKt> consumer) {
+	for (PersonKt person : team) {
+	    if (filter.test(person)) {
+		consumer.accept(person);
+	    }
+	}
     }
 
     private static void printWithFilter(List<PersonKt> team, Predicate<PersonKt> filter) {
-	for (PersonKt person : team) {
-	    if (filter.test(person)) {
-		System.out.println(person);
-	    }
-	}
+	performWithFilter(team, filter, System.out::println);
     }
 
 }
